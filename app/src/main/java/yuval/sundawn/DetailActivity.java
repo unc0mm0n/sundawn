@@ -1,13 +1,12 @@
 package yuval.sundawn;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
-import android.preference.PreferenceManager;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.support.v7.widget.ShareActionProvider;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -21,7 +20,16 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_detail, menu);
+
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, getIntent().getStringExtra(Intent.EXTRA_TEXT));
+
+        MenuItem item = menu.findItem(R.id.action_share);
+        ShareActionProvider shareAction = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
+        shareAction.setShareIntent(shareIntent);
         return true;
     }
 
@@ -37,20 +45,6 @@ public class DetailActivity extends AppCompatActivity {
             Intent settingsIntent = new Intent(this, SettingsActivity.class);
             startActivity(settingsIntent);
             return true;
-        }
-
-        if (id == R.id.action_view_location) {
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-            String location = prefs.getString(getString(R.string.pref_location_key),
-                    getString(R.string.pref_location_default));
-
-            Uri locationUri = Uri.parse("geo:0,0").buildUpon()
-                    .appendQueryParameter("q", location).build();
-
-            Intent viewIntent = new Intent(Intent.ACTION_VIEW, locationUri);
-            if (viewIntent.resolveActivity(getPackageManager()) != null) {
-                startActivity(viewIntent);
-            }
         }
 
         return super.onOptionsItemSelected(item);
