@@ -1,0 +1,25 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <EditTextPreference
+        android:key="@string/pref_location_key"
+        android:title="@string/pref_location_title"
+        android:defaultValue="@string/pref_location_default"
+        android:singleLine="true"
+        android:maxLines="1" />
+
+    <EditTextPreference
+        android:key="@string/pref_count_key"
+        android:title="@string/pref_count_title"
+        android:defaultValue="@string/pref_count_default"
+        android:singleLine="true"
+        android:numeric="integer"
+        android:maxLines="1" />
+
+    <ListPreference
+        android:key="@string/pref_units_key"
+        android:title="@string/pref_units_title"
+        android:entries="@array/pref_units_entries"
+        android:entryValues="@array/pref_units_entry_values"
+        android:defaultValue="@string/pref_units_default"/>
+</PreferenceScreen>
