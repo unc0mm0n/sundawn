@@ -82,7 +82,7 @@ public class MainActivityFragment extends Fragment {
 
     public class FetchWeatherTask extends AsyncTask<Void, Void, String[]> {
 
-        private final String OWM_KEY = "bb37c15e6e2c5e285f0dff93f3212fd1";
+        private final String OWM_KEY = getString(R.string.owm_api_key);
         private final String OWM_URL = "http://api.openweathermap.org/data/2.5/forecast/daily";
         private final String LOG_TAG = FetchWeatherTask.class.getSimpleName();
 
