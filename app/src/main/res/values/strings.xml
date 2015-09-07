@@ -4,7 +4,7 @@
     <string name="forecast_data_error">An error occurred while retrieving forecast data.</string>
 
     <string name="action_settings">Settings</string>
-    <string name="action_view_location">Map location</string>
+    <string name="action_view_location">View on map</string>
     <string name="action_share">Share</string>
 
     <string name="title_activity_settings">Settings</string>
